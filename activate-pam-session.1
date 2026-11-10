@@ -1,0 +1,63 @@
+.TH "ACTIVATE-PAM-SESSION" "1" "2026/04/01" "JCDX System Tools" "JCDX System Tools"
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.SH "NAME"
+activate-pam-session \- PAM module which opens and closes a PAM session
+.SH "SYNOPSIS"
+.HP \w'\fBactivate-pam-session\fR\ 'u
+\fBactivate-pam-session\fR 
+[ \fB-h\fR, \fB\-\-help\fR ] |
+[ \fB-v\fR, \fB\-\-verbose\fR ]
+[ \fB-u\fR, \fB\-\-user\fR \fINAME\fR ]
+.SH "DESCRIPTION"
+.PP
+The \fBactivate-pam-session\fR tool authenticates a user, opens and closes a
+PAM session. The goal of activating a PAM session is to trigger the \fBauth\fR
+and \fBsession\fR stacks in \fI/etc/pam.d\fR.
+If a user name is not provided, it uses the \fBUSER\fR environment variable.
+.SH "OPTIONS"
+.PP
+This tool recognizes the following options\&.
+.TP
+\fB-u\fR, \fB\-\-user\fR \fINAME\fR
+specifies the use to authenticate as
+.TP
+\fB-h\fR, \fB\-\-help\fR
+print usage informaiton and exit
+.TP
+\fB-v\fR, \fB\-\-verbose\fR
+enable extra runtime messages
+.SH "RETURN VALUES"
+.PP
+Returns \fB0\fR on success, otherwise \fB1\fR on any failure.
+.RE
+.SH "EXAMPLES"
+.PP
+Run the tool
+.PP
+.nf
+activate-pam-session ---help
+activate-pam-session --user siterep1
+activate-pam-session -vu siterep1
+.fi
+.PP
+Sample \fI/etc/pam.d/activate-pam-sesssion\fR file
+.PP
+.nf
+auth        required    pam_rootok\&.so
+session     required    system-auth
+.fi
+.SH "SEE ALSO"
+.PP
+\fBpam.conf\fR(5),
+\fBpam.d\fR(5),
+\fBpam\fR(8)
+.SH "AUTHOR"
+.PP
+The tool \fBactivate-pam-session\fR was written by JCDX Dev <jcdxdev@jcdx\&.org>\&.

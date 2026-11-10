@@ -1,2 +1,1 @@
-# pam
-Linux PAM examples
+# Linux PAM examples
